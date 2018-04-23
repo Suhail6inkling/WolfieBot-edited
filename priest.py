@@ -29,4 +29,7 @@ class Priest(Role):
       #Remove Saves
       pass
    
+  async def priestcheck(self, user):
+    if self.alignment = "Evil": #or Cultist changes to Priest
+        self.changerole(CUltist())
     
