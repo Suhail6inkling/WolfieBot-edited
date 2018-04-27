@@ -37,3 +37,21 @@ class Vampires(Faction):
 			self.fangsnumber = 2
 		else:
 			self.fangsnumber = 0
+class Vampire(Role):
+	name = "Vampire"
+	alignment = "Evil"
+	species = "Unearthly"
+	categories ["Support"]
+	objectives = ["evil-standard"]
+	saves = []
+	tags = {"Evil", "Support", "Unearthly", "Unique"}
+	
+	def __init__(self, vampires):
+		super().__init__()
+		self.actions = dict(vampires.actions)
+		self.actions["Stalk"] = [1,"night",Vampire.stalk]
+		self.ondaystart_abilities = [self.refresh_actions]
+		self.onnightstart_abilities = [self.fangs_gain_use]
+		
+	async def stalk(self, user):
+		#do later
