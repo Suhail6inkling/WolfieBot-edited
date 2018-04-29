@@ -4,7 +4,7 @@ class TimeLord(Role):
     species = "Unearthly"
     categories = ["Investigative","Support"]
     objectives = [“good-standard”]
-       saves = [Save(3,0,”regenerate”,self)]
+    saves = [Save(3,0, "regenerate",self)]
     tags = {"Good","Investigative","Support","Unearthly"}
 
     def __init__(self):
@@ -14,7 +14,8 @@ class TimeLord(Role):
     async def invite(self, user, target):
         await ctx.invoke(self.client.get_command("tardis"),timelord=user.mention,companion=target.mention))
         target.gainmodifier(Companion())
-        target.alignment == self.alignment
+        target.alignment = self.alignment
+        target.objectives = self.objectives 
 
     async def sonic(self, user):
         rolelist = []
@@ -26,6 +27,7 @@ class TimeLord(Role):
                 message = "{}, ".format(message)
                 message = "{}{}".format(message,x)
         sonic = await ctx.invoke(self.client.get_command("sonic"),roles=message)
+        return sonic
     
             
 
